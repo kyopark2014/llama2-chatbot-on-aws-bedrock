@@ -449,6 +449,11 @@ export class CdkLlama2ChatbotOnBedrockStack extends cdk.Stack {
       stageName: stage
     }); 
 
+    new cdk.CfnOutput(this, `UpdateCommend-for-${projectName}`, {
+      value: 'aws s3 cp ../html/chat.js '+'s3://'+s3Bucket.bucketName,
+      description: 'The url of web file upload',
+    });
+
     // deploy components
     new componentDeployment(scope, `deployment-for-${projectName}`, websocketapi.attrApiId)       
   }

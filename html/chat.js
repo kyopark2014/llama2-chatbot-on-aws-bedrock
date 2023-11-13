@@ -1,5 +1,5 @@
 const protocol = 'WEBSOCKET'; // WEBSOCKET or HTTP
-const endpoint = 'wss://asp2qjhyhl.execute-api.ap-northeast-2.amazonaws.com/dev';
+const endpoint = 'wss://3edqky5wya.execute-api.ap-northeast-2.amazonaws.com/dev';
 const langstate = 'korean'; // korean or english
 let webSocket
 let isConnected = false;
