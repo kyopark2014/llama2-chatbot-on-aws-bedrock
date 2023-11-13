@@ -29,19 +29,29 @@ modelId = os.environ.get('model_id', 'amazon.titan-tg1-large')
 print('model_id: ', modelId)
 conversationMode = os.environ.get('conversationMode', 'false')
 
-# websocket
-connection_url = os.environ.get('connection_url')
-client = boto3.client('apigatewaymanagementapi', endpoint_url=connection_url)
-print('connection_url: ', connection_url)
+prompt = "What is the difference between a llama and an alpaca?"
 
-def sendMessage(id, body):
-    try:
-        client.post_to_connection(
-            ConnectionId=id, 
-            Data=json.dumps(body)
-        )
-    except: 
-        raise Exception ("Not able to send a message")
+llamaPayload = json.dumps({ 
+	'prompt': prompt,
+    'max_gen_len': 512,
+	'top_p': 0.9,
+	'temperature': 0.2
+})
+
+bedrock_runtime = boto3.client(
+    service_name='bedrock-runtime', 
+    region_name='us-east-1'
+)
+response = bedrock_runtime.invoke_model(
+    body=llamaPayload, 
+    modelId=modelId, 
+    accept='application/json', 
+    contentType='application/json'
+)
+body = response.get('body').read().decode('utf-8')
+response_body = json.loads(body)
+print(response_body['generation'].strip())
+
 
 # bedrock   
 boto3_bedrock = boto3.client(
@@ -75,6 +85,20 @@ llm = Bedrock(
     model_kwargs=parameters)
 
 map = dict() # Conversation
+
+# websocket
+connection_url = os.environ.get('connection_url')
+client = boto3.client('apigatewaymanagementapi', endpoint_url=connection_url)
+print('connection_url: ', connection_url)
+
+def sendMessage(id, body):
+    try:
+        client.post_to_connection(
+            ConnectionId=id, 
+            Data=json.dumps(body)
+        )
+    except: 
+        raise Exception ("Not able to send a message")
 
 def get_prompt_template(query, convType):
     # check korean
