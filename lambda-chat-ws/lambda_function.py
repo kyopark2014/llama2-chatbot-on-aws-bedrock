@@ -57,11 +57,11 @@ print(response_body['generation'].strip())
 boto3_bedrock = boto3.client(
     service_name='bedrock-runtime',
     region_name=bedrock_region,
-    config=Config(
-        retries = {
-            'max_attempts': 30
-        }            
-    )
+    #config=Config(
+    #    retries = {
+    #        'max_attempts': 30
+    #    }            
+    #)
 )
 
 HUMAN_PROMPT = "\n\nUser:"
@@ -82,7 +82,6 @@ llm = Bedrock(
     client=boto3_bedrock, 
     #streaming=True,
     #callbacks=[StreamingStdOutCallbackHandler()],
-    endpoint_kwargs={"CustomAttributes": "accept_eula=true"},
     model_kwargs=parameters)
 
 msg = llm(HUMAN_PROMPT+prompt+AI_PROMPT)
