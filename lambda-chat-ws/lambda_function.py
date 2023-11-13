@@ -82,6 +82,7 @@ llm = Bedrock(
     client=boto3_bedrock, 
     #streaming=True,
     #callbacks=[StreamingStdOutCallbackHandler()],
+    endpoint_kwargs={"CustomAttributes": "accept_eula=true"},
     model_kwargs=parameters)
 
 msg = llm(HUMAN_PROMPT+prompt+AI_PROMPT)
