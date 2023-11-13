@@ -16,11 +16,11 @@
 
 여기서는 [AWS Cloud9](https://aws.amazon.com/ko/cloud9/)에서 [AWS CDK](https://aws.amazon.com/ko/cdk/)를 이용하여 인프라를 설치합니다. 또한 편의상 서울 리전을 통해 실습합니다.
 
-1) [Cloud9 Console](https://ap-northeast-2.console.aws.amazon.com/cloud9control/home?region=ap-northeast-2#/create)에 접속하여 [Create environment]-[Name]에서 “chatbot”으로 이름을 입력하고, EC2 instance는 “m5.large”를 선택합니다. 나머지는 기본값을 유지하고, 하단으로 스크롤하여 [Create]를 선택합니다.
+1) [Cloud9 Console](https://ap-northeast-2.console.aws.amazon.com/cloud9control/home?region=ap-northeast-2#/create)에 접속하여 [Create environment]-[Name]에서 “bedrock llama2”으로 이름을 입력하고, EC2 instance는 “m5.large”를 선택합니다. 나머지는 기본값을 유지하고, 하단으로 스크롤하여 [Create]를 선택합니다.
 
-![image](https://github.com/kyopark2014/stream-chatbot-for-amazon-bedrock/assets/52392004/c85c2ef5-4f96-4528-b5d4-ab9d3e52324e)
+![noname](https://github.com/kyopark2014/llama2-chatbot-on-aws-bedrock/assets/52392004/47ff6e86-6c42-407c-bd63-162c3d2cd586)
 
-2) [Environment](https://ap-northeast-2.console.aws.amazon.com/cloud9control/home?region=ap-northeast-2#/)에서 “chatbot”를 [Open]한 후에 아래와 같이 터미널을 실행합니다.
+2) [Environment](https://ap-northeast-2.console.aws.amazon.com/cloud9control/home?region=ap-northeast-2#/)에서 “bedrock llama2”를 [Open]한 후에 아래와 같이 터미널을 실행합니다.
 
 ![image](https://github.com/kyopark2014/stream-chatbot-for-amazon-bedrock/assets/52392004/fcf24f93-9ab3-4905-be8d-8146c7371951)
 
@@ -41,13 +41,13 @@ chmod a+rx resize.sh && ./resize.sh 80
 4) 소스를 다운로드합니다.
 
 ```java
-git clone https://github.com/kyopark2014/stream-chatbot-for-amazon-bedrock
+git clone https://github.com/kyopark2014/llama2-chatbot-on-aws-bedrock
 ```
 
 5) cdk 폴더로 이동하여 필요한 라이브러리를 설치합니다.
 
 ```java
-cd stream-chatbot-for-amazon-bedrock/cdk-stream-chatbot/ && npm install
+cd llama2-chatbot-on-aws-bedrock/cdk-llama2-chatbot-on-bedrock / && npm install
 ```
 
 7) CDK 사용을 위해 Boostraping을 수행합니다.
