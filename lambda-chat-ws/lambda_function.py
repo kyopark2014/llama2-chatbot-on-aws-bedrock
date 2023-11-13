@@ -84,6 +84,9 @@ llm = Bedrock(
     #callbacks=[StreamingStdOutCallbackHandler()],
     model_kwargs=parameters)
 
+msg = llm(HUMAN_PROMPT+prompt+AI_PROMPT)
+print('test message: ', msg)
+
 map = dict() # Conversation
 
 # websocket
