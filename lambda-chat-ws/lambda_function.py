@@ -70,7 +70,7 @@ AI_PROMPT = "\n\nAssistant:"
 def get_parameter(modelId):
     if modelId == 'meta.llama2-13b-chat-v1': 
         return {
-            'max_new_tokens': 1024,
+            'max_gen_len': 512,
 	        'top_p': 0.9,
 	        'temperature': 0.2
         }
