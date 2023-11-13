@@ -16,11 +16,11 @@ const region = process.env.CDK_DEFAULT_REGION;
 const debug = false;
 const stage = 'dev';
 const s3_prefix = 'docs';
-const model_id = "anthropic.claude-v2"; // amazon.titan-tg1-large, amazon.titan-tg1-xlarge, anthropic.claude-v1, anthropic.claude-v2
-const projectName = `stream-chatbot`; 
+const model_id = "meta.llama2-13b-chat-v1"; 
+const projectName = `llama2-chatbot`; 
 
-const bucketName = `storage-for-${projectName}-${region}`; 
-const bedrock_region = "us-east-1";  // "us-east-1" "us-west-2" 
+// const bucketName = `storage-for-${projectName}-${region}`; 
+const bedrock_region = "us-east-1";  
 const conversationMode = 'true'; 
 
 export class CdkLlama2ChatbotOnBedrockStack extends cdk.Stack {

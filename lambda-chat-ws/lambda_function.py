@@ -54,26 +54,17 @@ boto3_bedrock = boto3.client(
     )
 )
 
-HUMAN_PROMPT = "\n\nHuman:"
+HUMAN_PROMPT = "\n\nUser:"
 AI_PROMPT = "\n\nAssistant:"
+
 def get_parameter(modelId):
-    if modelId == 'amazon.titan-tg1-large' or modelId == 'amazon.titan-tg1-xlarge': 
+    if modelId == 'meta.llama2-13b-chat-v1': 
         return {
-            "maxTokenCount":1024,
-            "stopSequences":[],
-            "temperature":0,
-            "topP":0.9
-        }
-    elif modelId == 'anthropic.claude-v1' or modelId == 'anthropic.claude-v2':
-        return {
-            "max_tokens_to_sample":8191, # 90k
-            "temperature":0.1,
-            "top_k":250,
-            "top_p": 0.9,
-            "stop_sequences": [HUMAN_PROMPT]            
+            'max_gen_len': 1024,
+	        'top_p': 0.9,
+	        'temperature': 0.2
         }
 parameters = get_parameter(modelId)
-
 
 # langchain for bedrock
 llm = Bedrock(
