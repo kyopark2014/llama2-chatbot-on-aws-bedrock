@@ -5,4 +5,22 @@
 ```python
 HUMAN_PROMPT = "\n\nUser:"
 AI_PROMPT = "\n\nAssistant:"
+
+def get_parameter(modelId):
+    if modelId == 'meta.llama2-13b-chat-v1': 
+        return {
+            'max_gen_len': 1024,
+	        'top_p': 0.9,
+	        'temperature': 0.2
+        }
+parameters = get_parameter(modelId)
+
+# langchain for bedrock
+llm = Bedrock(
+    model_id=modelId, 
+    client=boto3_bedrock, 
+    streaming=True,
+    callbacks=[StreamingStdOutCallbackHandler()],
+    model_kwargs=parameters)
+
 ```
